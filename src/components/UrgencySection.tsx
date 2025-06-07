@@ -1,6 +1,7 @@
 
 import { Clock, TrendingUp, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const UrgencySection = () => {
   return (
@@ -105,13 +106,15 @@ const UrgencySection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white px-10 py-4 text-xl font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-200"
-              >
-                Claim Your Free LLMEO Audit Now
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Button>
+              <Link to="/llmeo-audit">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white px-10 py-4 text-xl font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all duration-200"
+                >
+                  Claim Your Free LLMEO Audit Now
+                  <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
               
               <div className="text-sm text-orange-200">
                 ⚡ Free audit includes competitive AI search analysis
