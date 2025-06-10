@@ -1,0 +1,308 @@
+
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { Check, Crown, Zap, Shield, Star, CreditCard, Settings } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const Subscription = () => {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState({
+    subscribed: false,
+    subscription_tier: null,
+    subscription_end: null
+  });
+
+  const plans = [
+    {
+      name: "LLMEO Starter",
+      price: "$1,997",
+      period: "/month",
+      description: "Perfect for small businesses ready to dominate AI search",
+      features: [
+        "LLM Ranking Optimization (3 keywords)",
+        "Basic LLMEO Content Creation",
+        "Monthly Performance Reports",
+        "ChatGPT & Claude Optimization",
+        "Email Support",
+        "Basic Competitor Analysis"
+      ],
+      tier: "Basic",
+      popular: false
+    },
+    {
+      name: "LLMEO Professional",
+      price: "$3,997",
+      period: "/month",
+      description: "For growing businesses serious about market leadership",
+      features: [
+        "LLM Ranking Optimization (10 keywords)",
+        "Advanced LLMEO Content Strategy",
+        "Weekly Performance Monitoring",
+        "All Major AI Platform Optimization",
+        "Priority Phone & Email Support",
+        "Advanced Competitive Intelligence",
+        "Local Market Domination",
+        "AI Persona Development"
+      ],
+      tier: "Premium",
+      popular: true
+    },
+    {
+      name: "LLMEO Enterprise",
+      price: "$7,997",
+      period: "/month",
+      description: "For enterprises demanding total AI search dominance",
+      features: [
+        "Unlimited LLM Optimization",
+        "Complete LLMEO Content Suite",
+        "Daily Performance Monitoring",
+        "Multi-Platform AI Dominance",
+        "Dedicated Account Manager",
+        "Crisis Management & Rep Shield",
+        "Industry Authority Positioning",
+        "Competitor Suppression Tactics",
+        "Custom AI Strategy Development"
+      ],
+      tier: "Enterprise",
+      popular: false
+    }
+  ];
+
+  useEffect(() => {
+    if (user) {
+      checkSubscriptionStatus();
+    }
+  }, [user]);
+
+  const checkSubscriptionStatus = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('check-subscription');
+      if (error) throw error;
+      
+      setSubscriptionStatus({
+        subscribed: data.subscribed || false,
+        subscription_tier: data.subscription_tier || null,
+        subscription_end: data.subscription_end || null
+      });
+    } catch (error) {
+      console.error('Error checking subscription:', error);
+    }
+  };
+
+  const handleSubscribe = async (planName: string) => {
+    if (!user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to subscribe to a plan.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { planName }
+      });
+
+      if (error) throw error;
+
+      if (data.url) {
+        // Open Stripe checkout in a new tab
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      toast({
+        title: "Error",
+        description: "Failed to create checkout session. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleManageSubscription = async () => {
+    if (!user) return;
+
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('customer-portal');
+      
+      if (error) throw error;
+
+      if (data.url) {
+        // Open customer portal in a new tab
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error opening customer portal:', error);
+      toast({
+        title: "Error",
+        description: "Failed to open subscription management. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Choose Your
+              <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"> LLMEO Plan</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Invest in your AI search future. Every plan includes our guarantee: Top 3 AI search rankings within 90 days or full refund.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Current Subscription Status */}
+      {user && subscriptionStatus.subscribed && (
+        <section className="py-8 bg-green-50 border-b border-green-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center justify-between bg-white rounded-xl p-6 shadow-lg">
+                <div className="flex items-center gap-4">
+                  <div className="bg-green-100 p-3 rounded-full">
+                    <Crown className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Active Plan: {subscriptionStatus.subscription_tier}
+                    </h3>
+                    <p className="text-gray-600">
+                      {subscriptionStatus.subscription_end 
+                        ? `Renews on ${new Date(subscriptionStatus.subscription_end).toLocaleDateString()}`
+                        : 'Active subscription'
+                      }
+                    </p>
+                  </div>
+                </div>
+                <Button 
+                  onClick={handleManageSubscription}
+                  disabled={loading}
+                  variant="outline"
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                  Manage Subscription
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Pricing Plans */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {plans.map((plan, index) => (
+                <div key={index} className={`relative rounded-2xl border-2 p-8 ${
+                  plan.popular 
+                    ? 'border-blue-500 bg-gradient-to-b from-blue-50 to-white shadow-2xl scale-105' 
+                    : 'border-slate-200 bg-white shadow-lg hover:shadow-xl'
+                } transition-all duration-300`}>
+                  
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                        <Crown className="w-4 h-4" />
+                        Most Popular
+                      </div>
+                    </div>
+                  )}
+
+                  {subscriptionStatus.subscription_tier === plan.tier && (
+                    <div className="absolute -top-4 right-4">
+                      <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                        <Star className="w-4 h-4" />
+                        Current Plan
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h3>
+                    <p className="text-slate-600 mb-6">{plan.description}</p>
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                      <span className="text-slate-600">{plan.period}</span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-4 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button 
+                    onClick={() => handleSubscribe(plan.name)}
+                    disabled={loading || (subscriptionStatus.subscription_tier === plan.tier)}
+                    className={`w-full py-3 text-lg font-semibold rounded-xl ${
+                      subscriptionStatus.subscription_tier === plan.tier
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : plan.popular
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
+                          : 'bg-slate-900 hover:bg-slate-800 text-white'
+                    }`}
+                  >
+                    {subscriptionStatus.subscription_tier === plan.tier ? (
+                      <>
+                        <Crown className="mr-2 w-5 h-5" />
+                        Current Plan
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="mr-2 w-5 h-5" />
+                        {loading ? 'Loading...' : 'Choose This Plan'}
+                      </>
+                    )}
+                  </Button>
+                </div>
+              ))}
+            </div>
+
+            {/* Guarantee */}
+            <div className="text-center mt-16 bg-green-50 rounded-2xl p-8 border border-green-200">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Shield className="w-8 h-8 text-green-600" />
+                <h4 className="text-2xl font-bold text-green-800">100% Money-Back Guarantee</h4>
+              </div>
+              <p className="text-green-700 max-w-2xl mx-auto">
+                We're so confident in our LLMEO system that we guarantee top 3 AI search rankings within 90 days. 
+                If we don't deliver, you get a full refund - no questions asked.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Subscription;

@@ -1,6 +1,7 @@
 
 import { Check, ArrowRight, Crown, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const PricingSection = () => {
   const mainTiers = [
@@ -70,7 +71,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+    <section className="py-20 bg-gradient-to-b from-white to-slate-50" id="pricing">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
@@ -125,16 +126,18 @@ const PricingSection = () => {
                   ))}
                 </ul>
 
-                <Button 
-                  className={`w-full py-3 text-lg font-semibold rounded-xl ${
-                    tier.highlight
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                      : 'bg-slate-900 hover:bg-slate-800 text-white'
-                  }`}
-                >
-                  {tier.cta}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <Link to="/subscription">
+                  <Button 
+                    className={`w-full py-3 text-lg font-semibold rounded-xl ${
+                      tier.highlight
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
+                        : 'bg-slate-900 hover:bg-slate-800 text-white'
+                    }`}
+                  >
+                    {tier.cta}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
               </div>
             ))}
           </div>

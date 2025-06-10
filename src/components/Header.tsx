@@ -1,5 +1,5 @@
 
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import UserProfile from './UserProfile';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const { user, loading } = useAuth();
 
   const navItems = [
@@ -15,6 +16,15 @@ const Header = () => {
     { label: 'Results', href: '#results' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'About', href: '#about' }
+  ];
+
+  const resourceItems = [
+    { label: 'LLMEO Guide', href: '/llmeo-guide' },
+    { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Webinars', href: '/webinars' },
+    { label: 'AI Search Trends', href: '/ai-search-trends' },
+    { label: 'Support Center', href: '/support' }
   ];
 
   return (
@@ -42,6 +52,37 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
+            
+            {/* Resources Dropdown */}
+            <div className="relative">
+              <button 
+                className="flex items-center gap-1 text-slate-700 hover:text-blue-600 font-medium transition-colors"
+                onMouseEnter={() => setIsResourcesOpen(true)}
+                onMouseLeave={() => setIsResourcesOpen(false)}
+              >
+                Resources
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              
+              {isResourcesOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
+                  onMouseEnter={() => setIsResourcesOpen(true)}
+                  onMouseLeave={() => setIsResourcesOpen(false)}
+                >
+                  {resourceItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="block px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                      onClick={() => setIsResourcesOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Desktop CTA */}
@@ -89,6 +130,24 @@ const Header = () => {
                   {item.label}
                 </a>
               ))}
+              
+              {/* Mobile Resources */}
+              <div className="py-2">
+                <div className="text-slate-700 font-medium mb-2">Resources</div>
+                <div className="pl-4 space-y-2">
+                  {resourceItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="block text-slate-600 hover:text-blue-600 py-1"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              
               <div className="pt-4 border-t border-slate-200">
                 {!loading && (
                   user ? (
