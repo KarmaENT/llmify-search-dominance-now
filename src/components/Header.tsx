@@ -3,9 +3,12 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import UserProfile from './UserProfile';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   const navItems = [
     { label: 'Services', href: '#services' },
@@ -43,14 +46,24 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/llmeo-audit">
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                Free Audit
-              </Button>
-            </Link>
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-              Get Started
-            </Button>
+            {!loading && (
+              user ? (
+                <UserProfile />
+              ) : (
+                <>
+                  <Link to="/llmeo-audit">
+                    <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                      Free Audit
+                    </Button>
+                  </Link>
+                  <Link to="/auth">
+                    <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                      Get Started
+                    </Button>
+                  </Link>
+                </>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,15 +89,25 @@ const Header = () => {
                   {item.label}
                 </a>
               ))}
-              <div className="flex flex-col gap-3 pt-4 border-t border-slate-200">
-                <Link to="/llmeo-audit">
-                  <Button variant="outline" className="border-blue-600 text-blue-600 w-full">
-                    Free Audit
-                  </Button>
-                </Link>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 w-full">
-                  Get Started
-                </Button>
+              <div className="pt-4 border-t border-slate-200">
+                {!loading && (
+                  user ? (
+                    <UserProfile />
+                  ) : (
+                    <div className="flex flex-col gap-3">
+                      <Link to="/llmeo-audit">
+                        <Button variant="outline" className="border-blue-600 text-blue-600 w-full">
+                          Free Audit
+                        </Button>
+                      </Link>
+                      <Link to="/auth">
+                        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 w-full">
+                          Get Started
+                        </Button>
+                      </Link>
+                    </div>
+                  )
+                )}
               </div>
             </nav>
           </div>
