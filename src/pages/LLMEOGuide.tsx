@@ -46,18 +46,18 @@ const LLMEOGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-background via-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-foreground">
               The Complete
-              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"> LLMEO Guide</span>
+              <span className="gradient-text"> LLMEO Guide</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               Master AI search optimization and dominate the future of digital discovery. 
               Your competitors are already losing ground—don't join them.
             </p>
@@ -66,34 +66,34 @@ const LLMEOGuide = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Our LLMEO Services
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Six game-changing services that'll make your competition wonder what hit them
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {services.map((service, index) => (
-                <div key={index} className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div key={index} className="card-enhanced p-8 hover:shadow-glow transition-all duration-300">
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl">
-                      <service.icon className="w-6 h-6 text-white" />
+                    <div className="bg-gradient-to-r from-primary to-primary/80 p-3 rounded-xl shadow-lg">
+                      <service.icon className="w-6 h-6 text-primary-foreground" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                      <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">{service.description}</p>
                     </div>
                   </div>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-gray-700">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                      <li key={idx} className="flex items-center gap-2 text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 text-primary" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
@@ -103,17 +103,17 @@ const LLMEOGuide = () => {
             </div>
 
             <div className="text-center mt-16">
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-200 mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div className="bg-gradient-to-r from-destructive/10 to-destructive/5 rounded-2xl p-8 border border-destructive/20 mb-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   Still On The Fence?
                 </h3>
-                <p className="text-gray-700 text-lg mb-6">
+                <p className="text-muted-foreground text-lg mb-6">
                   Every day you wait is market share your competitors claim. AI search isn't coming—it's here. 
                   The question isn't whether you'll adapt, but whether you'll lead or follow.
                 </p>
               </div>
               <Link to="/llmeo-audit">
-                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-12 py-4 text-lg font-semibold rounded-full">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground px-12 py-4 text-lg font-semibold rounded-full btn-hover shadow-glow">
                   Claim Your Free LLMEO Audit
                 </Button>
               </Link>
