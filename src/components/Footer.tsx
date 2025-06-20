@@ -1,50 +1,51 @@
 
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const footerSections = [
     {
       title: "Services",
       links: [
-        "LLM Ranking Optimization",
-        "LLMEO Content Creation", 
-        "Continuous Maintenance",
-        "AI Persona Development",
-        "Crisis Management",
-        "Enterprise Solutions"
+        { name: "LLM Ranking Optimization", href: "#" },
+        { name: "LLMEO Content Creation", href: "#" }, 
+        { name: "Continuous Maintenance", href: "#" },
+        { name: "AI Persona Development", href: "#" },
+        { name: "Crisis Management", href: "#" },
+        { name: "Enterprise Solutions", href: "#" }
       ]
     },
     {
       title: "Industries", 
       links: [
-        "Professional Services",
-        "E-commerce",
-        "SaaS & Technology",
-        "Healthcare",
-        "Real Estate",
-        "Manufacturing"
+        { name: "Professional Services", href: "#" },
+        { name: "E-commerce", href: "#" },
+        { name: "SaaS & Technology", href: "#" },
+        { name: "Healthcare", href: "#" },
+        { name: "Real Estate", href: "#" },
+        { name: "Manufacturing", href: "#" }
       ]
     },
     {
       title: "Resources",
       links: [
-        "LLMEO Guide",
-        "Case Studies", 
-        "Blog",
-        "Webinars",
-        "AI Search Trends",
-        "Support Center"
+        { name: "LLMEO Guide", href: "/llmeo-guide" },
+        { name: "Case Studies", href: "/case-studies" }, 
+        { name: "Blog", href: "/blog" },
+        { name: "Webinars", href: "/webinars" },
+        { name: "AI Search Trends", href: "/ai-search-trends" },
+        { name: "Support Center", href: "/support" }
       ]
     },
     {
       title: "Company",
       links: [
-        "About Us",
-        "Careers",
-        "Press",
-        "Partners",
-        "Privacy Policy", 
-        "Terms of Service"
+        { name: "About Us", href: "#" },
+        { name: "Careers", href: "#" },
+        { name: "Press", href: "#" },
+        { name: "Partners", href: "#" },
+        { name: "Privacy Policy", href: "/privacy-policy" }, 
+        { name: "Terms of Service", href: "/terms-of-service" }
       ]
     }
   ];
@@ -57,14 +58,14 @@ const Footer = () => {
           <div className="grid lg:grid-cols-5 gap-8 mb-12">
             {/* Company Info */}
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
+              <Link to="/" className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/70 rounded-xl flex items-center justify-center shadow-lg">
                   <span className="text-primary-foreground font-bold text-sm">L</span>
                 </div>
                 <span className="text-2xl font-bold gradient-text">
                   LLMify
                 </span>
-              </div>
+              </Link>
               <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
                 The world's first and only guaranteed LLMEO service provider. 
                 Dominating AI search before your competitors do.
@@ -94,12 +95,21 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      <a 
-                        href="#" 
-                        className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
-                      >
-                        {link}
-                      </a>
+                      {link.href.startsWith('/') ? (
+                        <Link 
+                          to={link.href}
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
+                        >
+                          {link.name}
+                        </Link>
+                      ) : (
+                        <a 
+                          href={link.href} 
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
+                        >
+                          {link.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -115,12 +125,12 @@ const Footer = () => {
               </div>
               
               <div className="flex gap-6">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline">
+                <Link to="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline">
                   Privacy Policy
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline">
+                </Link>
+                <Link to="/terms-of-service" className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline">
                   Terms of Service
-                </a>
+                </Link>
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline">
                   Cookie Policy
                 </a>

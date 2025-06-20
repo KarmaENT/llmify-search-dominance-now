@@ -17,6 +17,8 @@ import Webinars from "./pages/Webinars";
 import AISearchTrends from "./pages/AISearchTrends";
 import SupportCenter from "./pages/SupportCenter";
 import Subscription from "./pages/Subscription";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
