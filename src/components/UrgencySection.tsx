@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const UrgencySection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-red-900 via-orange-900 to-yellow-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-orange-900 via-amber-900 to-yellow-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width=%2260%22%20height=%2260%22%20viewBox=%220%200%2060%2060%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill=%22none%22%20fill-rule=%22evenodd%22%3E%3Cg%20fill=%22%23ffffff%22%20fill-opacity=%220.05%22%3E%3Cpath%20d=%22M30%2030c0-11%209-20%2020-20s20%209%2020%2020-9%2020-20%2020-20-9-20-20zm0%2020c11%200%2020-9%2020-20s-9-20-20-20-20%209-20%2020%209%2020%2020%2020z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
       
@@ -13,7 +13,7 @@ const UrgencySection = () => {
         <div className="max-w-6xl mx-auto text-center">
           {/* Main Urgency Message */}
           <div className="mb-16">
-            <div className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-8">
+            <div className="inline-flex items-center bg-orange-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-8">
               <Clock className="w-5 h-5 mr-2" />
               TIME-SENSITIVE OPPORTUNITY
             </div>

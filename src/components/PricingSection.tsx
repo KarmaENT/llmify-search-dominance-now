@@ -71,22 +71,22 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-slate-50" id="pricing">
+    <section className="py-20 bg-gradient-to-b from-slate-950 to-slate-900" id="pricing">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Invest in Your 
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"> AI Search Future</span>
+              <span className="gradient-text"> AI Search Future</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
               Choose the LLMEO package that matches your ambition. Every plan includes our guarantee: 
-              <strong className="text-green-600"> Top 3 AI search rankings within 90 days or full refund.</strong>
+              <strong className="text-primary"> Top 3 AI search rankings within 90 days or full refund.</strong>
             </p>
             
             {/* Limited Time Banner */}
-            <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full text-sm font-semibold">
+            <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full text-sm font-semibold">
               🔥 Early Adopter Pricing - Limited to First 100 Clients
             </div>
           </div>
@@ -96,12 +96,12 @@ const PricingSection = () => {
             {mainTiers.map((tier, index) => (
               <div key={index} className={`relative rounded-2xl border-2 p-8 ${
                 tier.highlight 
-                  ? 'border-blue-500 bg-gradient-to-b from-blue-50 to-white shadow-2xl scale-105' 
-                  : 'border-slate-200 bg-white shadow-lg hover:shadow-xl'
-              } transition-all duration-300`}>
+                  ? 'border-primary bg-gradient-to-b from-primary/10 to-slate-900/50 shadow-glow scale-105' 
+                  : 'border-slate-700 bg-slate-900/50 shadow-lg hover:shadow-xl'
+              } transition-all duration-300 backdrop-blur-sm`}>
                 {tier.badge && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 py-2 rounded-full text-sm font-bold">
                       <Crown className="w-4 h-4 inline mr-1" />
                       {tier.badge}
                     </div>
@@ -109,19 +109,19 @@ const PricingSection = () => {
                 )}
                 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{tier.name}</h3>
-                  <p className="text-slate-600 mb-6">{tier.description}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{tier.name}</h3>
+                  <p className="text-slate-400 mb-6">{tier.description}</p>
                   <div className="mb-6">
-                    <span className="text-4xl font-bold text-slate-900">{tier.price}</span>
-                    <span className="text-slate-600">{tier.period}</span>
+                    <span className="text-4xl font-bold text-white">{tier.price}</span>
+                    <span className="text-slate-400">{tier.period}</span>
                   </div>
                 </div>
 
                 <ul className="space-y-4 mb-8">
                   {tier.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-slate-700">{feature}</span>
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-slate-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -130,8 +130,8 @@ const PricingSection = () => {
                   <Button 
                     className={`w-full py-3 text-lg font-semibold rounded-xl ${
                       tier.highlight
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                        : 'bg-slate-900 hover:bg-slate-800 text-white'
+                        ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white'
+                        : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-600'
                     }`}
                   >
                     {tier.cta}
@@ -143,12 +143,12 @@ const PricingSection = () => {
           </div>
 
           {/* Add-On Services */}
-          <div className="bg-gradient-to-r from-slate-900 to-blue-900 rounded-2xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-white border border-slate-700">
             <div className="text-center mb-12">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 Premium Add-On Services
               </h3>
-              <p className="text-blue-100 max-w-3xl mx-auto">
+              <p className="text-slate-300 max-w-3xl mx-auto">
                 Enhance your LLMEO strategy with specialized services designed for maximum AI search dominance
               </p>
             </div>
@@ -160,19 +160,19 @@ const PricingSection = () => {
                     <Zap className="w-5 h-5 text-yellow-400" />
                     <h4 className="font-bold text-lg">{addon.name}</h4>
                   </div>
-                  <p className="text-blue-100 text-sm mb-4">{addon.description}</p>
-                  <div className="text-2xl font-bold text-green-400">{addon.price}</div>
+                  <p className="text-slate-300 text-sm mb-4">{addon.description}</p>
+                  <div className="text-2xl font-bold text-primary">{addon.price}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Money Back Guarantee */}
-          <div className="text-center mt-16 bg-green-50 rounded-2xl p-8 border border-green-200">
-            <h4 className="text-2xl font-bold text-green-800 mb-4">
+          <div className="text-center mt-16 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
+            <h4 className="text-2xl font-bold text-primary mb-4">
               100% Money-Back Guarantee
             </h4>
-            <p className="text-green-700 max-w-2xl mx-auto">
+            <p className="text-slate-300 max-w-2xl mx-auto">
               We're so confident in our LLMEO system that we guarantee top 3 AI search rankings within 90 days. 
               If we don't deliver, you get a full refund - no questions asked.
             </p>
