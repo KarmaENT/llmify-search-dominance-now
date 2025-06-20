@@ -85,25 +85,30 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop Auth Section */}
           <div className="hidden md:flex items-center gap-4">
-            {!loading && (
-              user ? (
-                <UserProfile />
-              ) : (
-                <>
-                  <Link to="/llmeo-audit">
-                    <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                      Free Audit
-                    </Button>
-                  </Link>
-                  <Link to="/auth">
-                    <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                      Get Started
-                    </Button>
-                  </Link>
-                </>
-              )
+            {loading ? (
+              <div className="w-8 h-8 animate-spin rounded-full border-2 border-blue-600 border-t-transparent"></div>
+            ) : user ? (
+              <UserProfile />
+            ) : (
+              <>
+                <Link to="/llmeo-audit">
+                  <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                    Free Audit
+                  </Button>
+                </Link>
+                <Link to="/auth">
+                  <Button variant="outline" className="text-slate-700 border-slate-300 hover:bg-slate-50">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/auth">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
             )}
           </div>
 
@@ -148,24 +153,32 @@ const Header = () => {
                 </div>
               </div>
               
+              {/* Mobile Auth Section */}
               <div className="pt-4 border-t border-slate-200">
-                {!loading && (
-                  user ? (
-                    <UserProfile />
-                  ) : (
-                    <div className="flex flex-col gap-3">
-                      <Link to="/llmeo-audit">
-                        <Button variant="outline" className="border-blue-600 text-blue-600 w-full">
-                          Free Audit
-                        </Button>
-                      </Link>
-                      <Link to="/auth">
-                        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 w-full">
-                          Get Started
-                        </Button>
-                      </Link>
-                    </div>
-                  )
+                {loading ? (
+                  <div className="flex justify-center">
+                    <div className="w-6 h-6 animate-spin rounded-full border-2 border-blue-600 border-t-transparent"></div>
+                  </div>
+                ) : user ? (
+                  <UserProfile />
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    <Link to="/llmeo-audit">
+                      <Button variant="outline" className="border-blue-600 text-blue-600 w-full">
+                        Free Audit
+                      </Button>
+                    </Link>
+                    <Link to="/auth">
+                      <Button variant="outline" className="text-slate-700 border-slate-300 w-full">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to="/auth">
+                      <Button className="bg-gradient-to-r from-blue-600 to-purple-600 w-full">
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
                 )}
               </div>
             </nav>
