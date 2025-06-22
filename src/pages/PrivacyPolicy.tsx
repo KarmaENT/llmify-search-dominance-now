@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Shield, Eye, FileText } from 'lucide-react';
@@ -163,9 +162,9 @@ const PrivacyPolicy = () => {
                   If you have questions about this privacy policy or your personal information, contact us:
                 </p>
                 <ul className="space-y-2 text-slate-300">
-                  <li>• Email: privacy@llmify.com</li>
-                  <li>• Phone: 1-800-LLMIFY-1</li>
-                  <li>• Address: LLMify Inc., San Francisco, CA</li>
+                  <li>• Email: support@llmify.io</li>
+                  <li>• Phone: 1-800-4-LLMIFY</li>
+                  <li>• Address: LLMify Inc., Seattle, WA 98101</li>
                 </ul>
               </div>
             </section>

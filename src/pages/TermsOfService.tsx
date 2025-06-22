@@ -1,10 +1,56 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Scale, FileText, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Calendar, Scale, FileText, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const TermsOfService = () => {
+  const serviceFeatures = [
+    "AI search ranking optimization",
+    "Content creation and optimization for AI systems", 
+    "Continuous monitoring and maintenance",
+    "AI persona development and management",
+    "Crisis management and reputation protection",
+    "Enterprise-level optimization solutions"
+  ];
+
+  const userResponsibilities = {
+    mustDo: [
+      "Provide accurate and complete information",
+      "Maintain the security of your account credentials", 
+      "Use our services in compliance with applicable laws",
+      "Respect intellectual property rights",
+      "Not engage in fraudulent or harmful activities"
+    ],
+    mustNotDo: [
+      "Use our services for illegal or unethical purposes",
+      "Attempt to reverse engineer or hack our systems",
+      "Share account access with unauthorized parties", 
+      "Interfere with the proper functioning of our services"
+    ]
+  };
+
+  const guaranteeConditions = [
+    "Full compliance with our optimization recommendations",
+    "Provision of necessary access and information",
+    "No conflicting optimization efforts by third parties", 
+    "Maintenance of service throughout the guarantee period"
+  ];
+
+  const liabilityExclusions = [
+    "Loss of profits, revenue, or business opportunities",
+    "Data loss or corruption",
+    "Third-party claims or actions",
+    "Service interruptions or delays"
+  ];
+
+  const terminationConsequences = [
+    "Your access to services will be discontinued",
+    "Outstanding fees become immediately due", 
+    "We will provide final reports and data export",
+    "Confidentiality obligations continue"
+  ];
+
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Header */}
@@ -52,8 +98,10 @@ const TermsOfService = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-slate dark:prose-invert max-w-none">
-            <section className="mb-12">
+          <div className="prose prose-slate dark:prose-invert max-w-none space-y-12">
+            
+            {/* Agreement to Terms */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
                 <FileText className="w-6 h-6 text-orange-500" />
                 Agreement to Terms
@@ -71,76 +119,106 @@ const TermsOfService = () => {
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Service Description */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Service Description</h2>
               <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
                 <p className="mb-4 text-slate-300">
                   LLMify provides Large Language Model Engine Optimization (LLMEO) services, including:
                 </p>
                 <ul className="space-y-2 text-slate-300">
-                  <li>• AI search ranking optimization</li>
-                  <li>• Content creation and optimization for AI systems</li>
-                  <li>• Continuous monitoring and maintenance</li>
-                  <li>• AI persona development and management</li>
-                  <li>• Crisis management and reputation protection</li>
-                  <li>• Enterprise-level optimization solutions</li>
+                  {serviceFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* User Responsibilities */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">User Responsibilities</h2>
-              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4 text-white">You agree to:</h3>
-                <ul className="space-y-2 mb-6 text-slate-300">
-                  <li>• Provide accurate and complete information</li>
-                  <li>• Maintain the security of your account credentials</li>
-                  <li>• Use our services in compliance with applicable laws</li>
-                  <li>• Respect intellectual property rights</li>
-                  <li>• Not engage in fraudulent or harmful activities</li>
-                </ul>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-green-400">You agree to:</h3>
+                  <ul className="space-y-2 text-slate-300">
+                    {userResponsibilities.mustDo.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 
-                <h3 className="text-lg font-semibold mb-4 text-white">You agree NOT to:</h3>
-                <ul className="space-y-2 text-slate-300">
-                  <li>• Use our services for illegal or unethical purposes</li>
-                  <li>• Attempt to reverse engineer or hack our systems</li>
-                  <li>• Share account access with unauthorized parties</li>
-                  <li>• Interfere with the proper functioning of our services</li>
-                </ul>
+                <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-red-400">You agree NOT to:</h3>
+                  <ul className="space-y-2 text-slate-300">
+                    {userResponsibilities.mustNotDo.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <AlertTriangle className="w-4 h-4 text-red-500 mt-1 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Payment Terms */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Payment Terms</h2>
               <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
-                <ul className="space-y-3 text-slate-300">
-                  <li>• <strong className="text-white">Fees:</strong> All fees are as described in your service agreement and are non-refundable unless otherwise stated</li>
-                  <li>• <strong className="text-white">Billing:</strong> Services are billed monthly or annually as selected</li>
-                  <li>• <strong className="text-white">Late Payments:</strong> Late payments may result in service suspension</li>
-                  <li>• <strong className="text-white">Price Changes:</strong> We reserve the right to modify pricing with 30 days notice</li>
-                  <li>• <strong className="text-white">Taxes:</strong> You are responsible for applicable taxes</li>
-                </ul>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-3 text-white">Billing & Fees</h4>
+                    <ul className="space-y-2 text-slate-300 text-sm">
+                      <li>• All fees are non-refundable unless otherwise stated</li>
+                      <li>• Services billed monthly or annually as selected</li>
+                      <li>• You are responsible for applicable taxes</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-3 text-white">Payment Policy</h4>
+                    <ul className="space-y-2 text-slate-300 text-sm">
+                      <li>• Late payments may result in service suspension</li>
+                      <li>• Price changes require 30 days notice</li>
+                      <li>• Payment methods: Credit card, ACH, wire transfer</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6 text-white">Service Guarantees</h2>
+            {/* Service Guarantees */}
+            <section>
+              <h2 className="text-2xl font-bold mb-6 text-white">LLMEO Service Guarantee</h2>
               <div className="bg-orange-600/10 border border-orange-500/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4 text-white">LLMEO Guarantee</h3>
-                <p className="mb-4 text-slate-300">
-                  We guarantee improvements in your AI search visibility within 90 days of service commencement, 
-                  or we will provide additional optimization at no cost. This guarantee is subject to:
-                </p>
-                <ul className="space-y-2 text-slate-300">
-                  <li>• Full compliance with our optimization recommendations</li>
-                  <li>• Provision of necessary access and information</li>
-                  <li>• No conflicting optimization efforts by third parties</li>
-                  <li>• Maintenance of service throughout the guarantee period</li>
-                </ul>
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-4 text-white">Our Promise</h3>
+                  <p className="mb-4 text-slate-300">
+                    We guarantee improvements in your AI search visibility within 90 days of service commencement, 
+                    or we will provide additional optimization at no cost.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3 text-white">Guarantee Conditions:</h4>
+                  <ul className="space-y-2 text-slate-300">
+                    {guaranteeConditions.map((condition, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
+                        {condition}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Limitations of Liability */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
                 <AlertTriangle className="w-6 h-6 text-orange-500" />
                 Limitations of Liability
@@ -148,76 +226,98 @@ const TermsOfService = () => {
               <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
                 <p className="mb-4 text-slate-300">
                   To the maximum extent permitted by law, LLMify shall not be liable for any indirect, 
-                  incidental, special, consequential, or punitive damages, including but not limited to:
+                  incidental, special, consequential, or punitive damages, including:
                 </p>
                 <ul className="space-y-2 mb-4 text-slate-300">
-                  <li>• Loss of profits, revenue, or business opportunities</li>
-                  <li>• Data loss or corruption</li>
-                  <li>• Third-party claims or actions</li>
-                  <li>• Service interruptions or delays</li>
+                  {liabilityExclusions.map((exclusion, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                      {exclusion}
+                    </li>
+                  ))}
                 </ul>
-                <p className="text-slate-300">
-                  Our total liability for any claim shall not exceed the amount paid by you for 
-                  services in the 12 months preceding the claim.
+                <p className="text-slate-300 bg-orange-600/10 border border-orange-500/20 rounded p-3">
+                  <strong>Total Liability Cap:</strong> Our total liability for any claim shall not exceed the amount 
+                  paid by you for services in the 12 months preceding the claim.
                 </p>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Intellectual Property */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Intellectual Property</h2>
-              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4 text-white">Our IP Rights</h3>
-                <p className="mb-4 text-slate-300">
-                  All content, software, and materials provided by LLMify remain our intellectual property. 
-                  You receive a limited license to use our services as intended.
-                </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-white">Our IP Rights</h3>
+                  <p className="text-slate-300">
+                    All content, software, and materials provided by LLMify remain our intellectual property. 
+                    You receive a limited license to use our services as intended.
+                  </p>
+                </div>
                 
-                <h3 className="text-lg font-semibold mb-4 text-white">Your Content</h3>
-                <p className="text-slate-300">
-                  You retain ownership of content you provide to us. By using our services, you grant us 
-                  a license to use, modify, and optimize your content for LLMEO purposes.
-                </p>
+                <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-white">Your Content</h3>
+                  <p className="text-slate-300">
+                    You retain ownership of content you provide to us. By using our services, you grant us 
+                    a license to use, modify, and optimize your content for LLMEO purposes.
+                  </p>
+                </div>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Termination */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Termination</h2>
               <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
                 <p className="mb-4 text-slate-300">
                   Either party may terminate this agreement with 30 days written notice. We may terminate 
-                  immediately for breach of these terms. Upon termination:
+                  immediately for breach of these terms.
                 </p>
+                <h4 className="font-semibold mb-3 text-white">Upon Termination:</h4>
                 <ul className="space-y-2 text-slate-300">
-                  <li>• Your access to services will be discontinued</li>
-                  <li>• Outstanding fees become immediately due</li>
-                  <li>• We will provide final reports and data export</li>
-                  <li>• Confidentiality obligations continue</li>
+                  {terminationConsequences.map((consequence, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                      {consequence}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </section>
 
-            <section className="mb-12">
+            {/* Governing Law */}
+            <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Governing Law</h2>
               <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
                 <p className="text-slate-300">
-                  These terms are governed by the laws of California, United States. Any disputes will be 
-                  resolved through binding arbitration in San Francisco, CA, except for intellectual property 
+                  These terms are governed by the laws of Washington State, United States. Any disputes will be 
+                  resolved through binding arbitration in Seattle, WA, except for intellectual property 
                   disputes which may be brought in federal court.
                 </p>
               </div>
             </section>
 
+            {/* Contact Information */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-white">Contact Information</h2>
               <div className="bg-orange-600/10 border border-orange-500/20 rounded-lg p-6">
                 <p className="mb-4 text-slate-300">
                   For questions about these terms or our services, contact us:
                 </p>
-                <ul className="space-y-2 text-slate-300">
-                  <li>• Email: legal@llmify.com</li>
-                  <li>• Phone: 1-800-LLMIFY-1</li>
-                  <li>• Address: LLMify Inc., San Francisco, CA</li>
-                </ul>
+                <div className="grid md:grid-cols-3 gap-4 text-slate-300">
+                  <div>
+                    <strong className="text-white">Email:</strong><br />
+                    support@llmify.io
+                  </div>
+                  <div>
+                    <strong className="text-white">Phone:</strong><br />
+                    1-800-4-LLMIFY
+                  </div>
+                  <div>
+                    <strong className="text-white">Address:</strong><br />
+                    Seattle, WA 98101
+                  </div>
+                </div>
               </div>
             </section>
           </div>

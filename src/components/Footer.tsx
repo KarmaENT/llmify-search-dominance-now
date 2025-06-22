@@ -7,23 +7,23 @@ const Footer = () => {
     {
       title: "Services",
       links: [
-        { name: "LLM Ranking Optimization", href: "#" },
-        { name: "LLMEO Content Creation", href: "#" }, 
-        { name: "Continuous Maintenance", href: "#" },
-        { name: "AI Persona Development", href: "#" },
-        { name: "Crisis Management", href: "#" },
-        { name: "Enterprise Solutions", href: "#" }
+        { name: "LLM Ranking Optimization", href: "/services/llm-ranking-optimization" },
+        { name: "LLMEO Content Creation", href: "/services/llmeo-content-creation" }, 
+        { name: "Continuous Maintenance", href: "/services/continuous-maintenance" },
+        { name: "AI Persona Development", href: "/services/ai-persona-development" },
+        { name: "Crisis Management", href: "/services/crisis-management" },
+        { name: "Enterprise Solutions", href: "/services/enterprise-solutions" }
       ]
     },
     {
       title: "Industries", 
       links: [
-        { name: "Professional Services", href: "#" },
-        { name: "E-commerce", href: "#" },
-        { name: "SaaS & Technology", href: "#" },
-        { name: "Healthcare", href: "#" },
-        { name: "Real Estate", href: "#" },
-        { name: "Manufacturing", href: "#" }
+        { name: "Professional Services", href: "/industries/professional-services" },
+        { name: "E-commerce", href: "/industries/e-commerce" },
+        { name: "SaaS & Technology", href: "/industries/saas-technology" },
+        { name: "Healthcare", href: "/industries/healthcare" },
+        { name: "Real Estate", href: "/industries/real-estate" },
+        { name: "Manufacturing", href: "/industries/manufacturing" }
       ]
     },
     {
@@ -40,10 +40,10 @@ const Footer = () => {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: "Press", href: "#" },
-        { name: "Partners", href: "#" },
+        { name: "About Us", href: "/company/about-us" },
+        { name: "Careers", href: "/company/careers" },
+        { name: "Press", href: "/company/press" },
+        { name: "Partners", href: "/company/partners" },
         { name: "Privacy Policy", href: "/privacy-policy" }, 
         { name: "Terms of Service", href: "/terms-of-service" }
       ]
@@ -75,15 +75,15 @@ const Footer = () => {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3 group">
                   <Mail className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">hello@llmify.com</span>
+                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">support@llmify.io</span>
                 </div>
                 <div className="flex items-center gap-3 group">
                   <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">1-800-LLMIFY-1</span>
+                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">1-800-4-LLMIFY</span>
                 </div>
                 <div className="flex items-center gap-3 group">
                   <MapPin className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">Global HQ, San Francisco</span>
+                  <span className="text-muted-foreground group-hover:text-foreground transition-colors">Seattle, WA 98101</span>
                 </div>
               </div>
             </div>
@@ -95,21 +95,12 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      {link.href.startsWith('/') ? (
-                        <Link 
-                          to={link.href}
-                          className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
-                        >
-                          {link.name}
-                        </Link>
-                      ) : (
-                        <a 
-                          href={link.href} 
-                          className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
-                        >
-                          {link.name}
-                        </a>
-                      )}
+                      <Link 
+                        to={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm animated-underline"
+                      >
+                        {link.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
