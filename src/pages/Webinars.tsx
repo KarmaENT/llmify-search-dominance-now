@@ -65,18 +65,18 @@ const Webinars = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 text-white">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               LLMEO
-              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"> Masterclasses</span>
+              <span className="bg-gradient-to-r from-orange-500 to-orange-400 bg-clip-text text-transparent"> Masterclasses</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
               Level up your AI search game with exclusive training from the industry's top LLMEO experts. 
               Knowledge this powerful shouldn't be free—but it is.
             </p>
@@ -85,14 +85,14 @@ const Webinars = () => {
       </section>
 
       {/* Upcoming Webinars */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-950">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Upcoming Masterclasses
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-slate-300">
                 Secure your spot before your competitors do
               </p>
             </div>
@@ -101,64 +101,64 @@ const Webinars = () => {
               {upcomingWebinars.map((webinar, index) => (
                 <div key={index} className={`rounded-2xl shadow-xl overflow-hidden ${
                   webinar.featured 
-                    ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200' 
-                    : 'bg-white border border-gray-200'
+                    ? 'bg-gradient-to-r from-orange-600/20 to-orange-500/10 border-2 border-orange-500/20' 
+                    : 'bg-slate-900/50 backdrop-blur-sm border border-slate-700'
                 }`}>
                   {webinar.featured && (
-                    <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 text-center font-semibold">
+                    <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white px-6 py-2 text-center font-semibold">
                       🔥 Featured Masterclass - Limited Seats Available
                     </div>
                   )}
                   <div className="p-8 md:p-12">
                     <div className="grid md:grid-cols-3 gap-8">
                       <div className="md:col-span-2">
-                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{webinar.title}</h3>
-                        <p className="text-lg text-gray-600 mb-6">{webinar.description}</p>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{webinar.title}</h3>
+                        <p className="text-lg text-slate-300 mb-6">{webinar.description}</p>
                         
                         <div className="grid md:grid-cols-2 gap-4 mb-6">
                           <div className="flex items-center gap-3">
-                            <Calendar className="w-5 h-5 text-blue-600" />
+                            <Calendar className="w-5 h-5 text-orange-500" />
                             <div>
-                              <div className="font-semibold text-gray-900">{webinar.date}</div>
-                              <div className="text-sm text-gray-600">{webinar.time}</div>
+                              <div className="font-semibold text-white">{webinar.date}</div>
+                              <div className="text-sm text-slate-400">{webinar.time}</div>
                             </div>
                           </div>
                           <div className="flex items-center gap-3">
-                            <Clock className="w-5 h-5 text-purple-600" />
+                            <Clock className="w-5 h-5 text-orange-500" />
                             <div>
-                              <div className="font-semibold text-gray-900">{webinar.duration}</div>
-                              <div className="text-sm text-gray-600">Duration</div>
+                              <div className="font-semibold text-white">{webinar.duration}</div>
+                              <div className="text-sm text-slate-400">Duration</div>
                             </div>
                           </div>
                           <div className="flex items-center gap-3">
-                            <Users className="w-5 h-5 text-green-600" />
+                            <Users className="w-5 h-5 text-orange-500" />
                             <div>
-                              <div className="font-semibold text-gray-900">{webinar.attendees}</div>
-                              <div className="text-sm text-gray-600">Already registered</div>
+                              <div className="font-semibold text-white">{webinar.attendees}</div>
+                              <div className="text-sm text-slate-400">Already registered</div>
                             </div>
                           </div>
                         </div>
 
-                        <p className="text-sm text-gray-600 mb-6">Presented by: <span className="font-semibold">{webinar.presenter}</span></p>
+                        <p className="text-sm text-slate-400 mb-6">Presented by: <span className="font-semibold text-white">{webinar.presenter}</span></p>
                       </div>
 
-                      <div className="bg-white rounded-xl p-6 border border-gray-200 h-fit">
-                        <h4 className="text-xl font-bold text-gray-900 mb-4 text-center">Reserve Your Spot</h4>
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700 h-fit">
+                        <h4 className="text-xl font-bold text-white mb-4 text-center">Reserve Your Spot</h4>
                         <div className="text-center mb-6">
-                          <div className="text-3xl font-bold text-green-600">FREE</div>
-                          <div className="text-sm text-gray-600">Usually $297</div>
+                          <div className="text-3xl font-bold text-orange-500">FREE</div>
+                          <div className="text-sm text-slate-400">Usually $297</div>
                         </div>
                         <Button 
                           size="lg" 
                           className={`w-full ${
                             webinar.featured 
-                              ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700' 
-                              : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                              ? 'bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600' 
+                              : 'bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600'
                           }`}
                         >
                           Register Now
                         </Button>
-                        <p className="text-xs text-gray-500 mt-4 text-center">
+                        <p className="text-xs text-slate-400 mt-4 text-center">
                           📧 You'll receive the Zoom link 24 hours before the session
                         </p>
                       </div>
@@ -172,49 +172,49 @@ const Webinars = () => {
       </section>
 
       {/* Past Webinars */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-slate-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Replay Library
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-slate-300">
                 Catch up on the sessions that changed everything
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {pastWebinars.map((webinar, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+                <div key={index} className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-slate-700 hover:shadow-xl transition-all duration-300">
                   <div className="relative mb-6">
-                    <div className="bg-gradient-to-br from-gray-200 to-blue-200 rounded-xl h-48 flex items-center justify-center">
-                      <Play className="w-16 h-16 text-blue-600" />
+                    <div className="bg-gradient-to-br from-slate-700 to-slate-600 rounded-xl h-48 flex items-center justify-center">
+                      <Play className="w-16 h-16 text-orange-500" />
                     </div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-900">
+                    <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-white">
                       {webinar.views} views
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{webinar.title}</h3>
-                  <p className="text-gray-600 mb-4">{webinar.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">{webinar.title}</h3>
+                  <p className="text-slate-300 mb-4">{webinar.description}</p>
                   
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-1">
                       {[1,2,3,4,5].map((star) => (
                         <Star 
                           key={star} 
-                          className={`w-4 h-4 ${star <= Math.floor(webinar.rating) ? 'text-yellow-500 fill-current' : 'text-gray-300'}`} 
+                          className={`w-4 h-4 ${star <= Math.floor(webinar.rating) ? 'text-yellow-500 fill-current' : 'text-slate-500'}`} 
                         />
                       ))}
-                      <span className="text-sm text-gray-600 ml-2">{webinar.rating}</span>
+                      <span className="text-sm text-slate-400 ml-2">{webinar.rating}</span>
                     </div>
-                    <span className="text-sm text-gray-500">{webinar.date}</span>
+                    <span className="text-sm text-slate-400">{webinar.date}</span>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-6">Presented by: <span className="font-semibold">{webinar.presenter}</span></p>
+                  <p className="text-sm text-slate-400 mb-6">Presented by: <span className="font-semibold text-white">{webinar.presenter}</span></p>
 
-                  <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
+                  <Button variant="outline" className="w-full border-orange-500 text-orange-500 hover:bg-orange-500/10">
                     <Play className="w-4 h-4 mr-2" />
                     Watch Replay
                   </Button>
@@ -223,21 +223,21 @@ const Webinars = () => {
             </div>
 
             <div className="text-center mt-16">
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-200 mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div className="bg-gradient-to-r from-orange-600/20 to-orange-500/10 rounded-2xl p-8 border border-orange-500/20 mb-8">
+                <h3 className="text-2xl font-bold text-white mb-4">
                   Want VIP Access to All Future Masterclasses?
                 </h3>
-                <p className="text-gray-700 text-lg mb-6">
+                <p className="text-slate-300 text-lg mb-6">
                   Premium members get priority registration, exclusive Q&A sessions, and downloadable resources. 
                   Stop competing for spots—guarantee yours.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link to="/llmeo-audit">
-                    <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3">
+                    <Button size="lg" className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-8 py-3">
                       Get Free Audit First
                     </Button>
                   </Link>
-                  <Button size="lg" variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-3">
+                  <Button size="lg" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500/10 px-8 py-3">
                     Explore Premium Plans
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
