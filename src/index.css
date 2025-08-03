@@ -5,83 +5,99 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Light theme - keeping for potential toggle */
+    --background: 210 11% 96%;
+    --foreground: 210 6% 21%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 210 11% 96%;
+    --card-foreground: 210 6% 21%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: 210 11% 96%;
+    --popover-foreground: 210 6% 21%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 355 7% 97%;
+    --primary: 188 100% 50%;
+    --primary-foreground: 210 6% 21%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 210 6% 93%;
+    --secondary-foreground: 210 6% 21%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 210 6% 93%;
+    --muted-foreground: 210 6% 46%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 188 100% 95%;
+    --accent-foreground: 210 6% 21%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142 76% 36%;
+    --border: 210 6% 82%;
+    --input: 210 6% 82%;
+    --ring: 188 100% 50%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Black/Cyan theme colors */
+    --black-primary: 210 11% 4%;
+    --black-secondary: 210 9% 9%;
+    --black-muted: 210 7% 15%;
+    --cyan-primary: 188 100% 50%;
+    --cyan-secondary: 188 76% 60%;
+    --cyan-muted: 188 40% 85%;
+
+    /* Enhanced gradients and effects */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--cyan-primary)), hsl(var(--cyan-secondary)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--black-primary)), hsl(var(--black-secondary)));
+    --shadow-cyan: 0 0 30px hsl(var(--cyan-primary) / 0.3);
+    --shadow-cyan-lg: 0 0 60px hsl(var(--cyan-primary) / 0.2);
+
+    --sidebar-background: 210 11% 96%;
+    --sidebar-foreground: 210 6% 21%;
+    --sidebar-primary: 188 100% 50%;
+    --sidebar-primary-foreground: 210 6% 21%;
+    --sidebar-accent: 210 6% 93%;
+    --sidebar-accent-foreground: 210 6% 21%;
+    --sidebar-border: 210 6% 82%;
+    --sidebar-ring: 188 100% 50%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Dark theme using black/cyan palette */
+    --background: 210 11% 4%;
+    --foreground: 188 40% 85%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 210 9% 9%;
+    --card-foreground: 188 40% 85%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 210 9% 9%;
+    --popover-foreground: 188 40% 85%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 355 7% 97%;
+    --primary: 188 100% 50%;
+    --primary-foreground: 210 11% 4%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 7% 15%;
+    --secondary-foreground: 188 40% 85%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 210 7% 15%;
+    --muted-foreground: 188 20% 65%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 210 7% 15%;
+    --accent-foreground: 188 40% 85%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 188 40% 85%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142 76% 36%;
+    --border: 210 7% 15%;
+    --input: 210 7% 15%;
+    --ring: 188 100% 50%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 142 76% 36%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 142 76% 36%;
+    --sidebar-background: 210 11% 4%;
+    --sidebar-foreground: 188 40% 85%;
+    --sidebar-primary: 188 100% 50%;
+    --sidebar-primary-foreground: 210 11% 4%;
+    --sidebar-accent: 210 7% 15%;
+    --sidebar-accent-foreground: 188 40% 85%;
+    --sidebar-border: 210 7% 15%;
+    --sidebar-ring: 188 100% 50%;
   }
 }
 
@@ -125,29 +141,72 @@
 }
 
 @layer components {
-  /* Glass morphism utility */
+  /* Enhanced glass morphism with black/cyan theme */
   .glass {
     @apply bg-background/80 backdrop-blur-md border border-border/50;
   }
 
-  /* Enhanced gradient text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  .glass-dark {
+    @apply bg-black-secondary/60 backdrop-blur-md border border-primary/20;
   }
 
-  /* Enhanced button hover effects */
+  /* Enhanced gradient text using cyan colors */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-cyan-secondary to-primary bg-clip-text text-transparent;
+  }
+
+  .gradient-text-reverse {
+    @apply bg-gradient-to-r from-cyan-secondary to-primary bg-clip-text text-transparent;
+  }
+
+  /* Enhanced button hover effects with cyan glow */
   .btn-hover {
     @apply transition-all duration-200 hover:scale-[1.02] hover:shadow-lg;
   }
 
-  /* Card with enhanced shadow */
+  .btn-hover-glow {
+    @apply transition-all duration-300 hover:scale-[1.02];
+  }
+
+  .btn-hover-glow:hover {
+    box-shadow: var(--shadow-cyan);
+  }
+
+  /* Card with enhanced shadow and cyan accents */
   .card-enhanced {
     @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
-  /* Animated underline */
+  .card-dark {
+    @apply bg-card border border-border/50 rounded-lg backdrop-blur-sm;
+  }
+
+  .card-dark:hover {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: var(--shadow-cyan);
+  }
+
+  /* Animated underline with cyan */
   .animated-underline {
     @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Cyan glow effects */
+  .glow-cyan {
+    box-shadow: var(--shadow-cyan);
+  }
+
+  .glow-cyan-lg {
+    box-shadow: var(--shadow-cyan-lg);
+  }
+
+  /* Black/cyan section backgrounds */
+  .section-dark {
+    @apply bg-gradient-to-b from-black-primary to-black-secondary;
+  }
+
+  .section-dark-alt {
+    @apply bg-gradient-to-b from-black-secondary to-black-muted;
   }
 }
 
