@@ -63,14 +63,14 @@ const CaseStudies = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+      <section className="pt-24 pb-16 bg-background text-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Real Results,
-              <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"> Real Revenue</span>
+              <span className="gradient-text"> Real Revenue</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               See how smart companies transformed their AI search presence and left their competition in the dust.
             </p>
           </div>
@@ -78,17 +78,17 @@ const CaseStudies = () => {
       </section>
 
       {/* Metrics Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-4 gap-8 mb-20">
               {metrics.map((metric, index) => (
                 <div key={index} className="text-center">
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <metric.icon className="w-8 h-8 text-white" />
+                  <div className="bg-gradient-to-r from-primary to-primary/70 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                    <metric.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{metric.value}</div>
-                  <p className="text-gray-600 text-sm">{metric.label}</p>
+                  <div className="text-3xl font-bold text-foreground mb-2">{metric.value}</div>
+                  <p className="text-muted-foreground text-sm">{metric.label}</p>
                 </div>
               ))}
             </div>
@@ -97,63 +97,63 @@ const CaseStudies = () => {
       </section>
 
       {/* Case Studies */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Success Stories That Speak Volumes
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-muted-foreground">
                 These companies didn't just improve—they dominated. Your turn.
               </p>
             </div>
 
             <div className="space-y-12">
               {caseStudies.map((study, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div key={index} className="card-enhanced p-8 md:p-12">
                   <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900">{study.company}</h3>
-                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <h3 className="text-2xl font-bold text-foreground">{study.company}</h3>
+                        <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
                           {study.industry}
                         </span>
                       </div>
                       
                       <div className="mb-6">
-                        <h4 className="font-semibold text-gray-900 mb-2">Challenge:</h4>
-                        <p className="text-gray-600 mb-4">{study.challenge}</p>
+                        <h4 className="font-semibold text-foreground mb-2">Challenge:</h4>
+                        <p className="text-muted-foreground mb-4">{study.challenge}</p>
                         
-                        <h4 className="font-semibold text-gray-900 mb-2">Solution:</h4>
-                        <p className="text-gray-600">{study.solution}</p>
+                        <h4 className="font-semibold text-foreground mb-2">Solution:</h4>
+                        <p className="text-muted-foreground">{study.solution}</p>
                       </div>
 
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
+                      <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-xl border border-primary/20">
                         <div className="flex justify-center gap-1 mb-4">
                           {[1,2,3,4,5].map((star) => (
-                            <Star key={star} className="w-5 h-5 text-yellow-500 fill-current" />
+                            <Star key={star} className="w-5 h-5 text-accent fill-current" />
                           ))}
                         </div>
-                        <blockquote className="text-gray-700 italic mb-4">"{study.quote}"</blockquote>
-                        <cite className="text-sm font-medium text-gray-900">— {study.author}</cite>
+                        <blockquote className="text-muted-foreground italic mb-4">"{study.quote}"</blockquote>
+                        <cite className="text-sm font-medium text-foreground">— {study.author}</cite>
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
-                      <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Results in {study.results.timeframe}</h4>
+                    <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-8 rounded-2xl border border-primary/20">
+                      <h4 className="text-xl font-bold text-foreground mb-6 text-center">Results in {study.results.timeframe}</h4>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-700">AI Visibility</span>
-                          <span className="text-2xl font-bold text-green-600">{study.results.aiVisibility}</span>
+                          <span className="text-muted-foreground">AI Visibility</span>
+                          <span className="text-2xl font-bold text-primary">{study.results.aiVisibility}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-700">Lead Generation</span>
-                          <span className="text-2xl font-bold text-blue-600">{study.results.leads}</span>
+                          <span className="text-muted-foreground">Lead Generation</span>
+                          <span className="text-2xl font-bold text-primary">{study.results.leads}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-700">Revenue Impact</span>
-                          <span className="text-2xl font-bold text-purple-600">{study.results.revenue}</span>
+                          <span className="text-muted-foreground">Revenue Impact</span>
+                          <span className="text-2xl font-bold text-primary">{study.results.revenue}</span>
                         </div>
                       </div>
                     </div>
@@ -163,17 +163,17 @@ const CaseStudies = () => {
             </div>
 
             <div className="text-center mt-16">
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-200 mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20 mb-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   Ready To Write Your Success Story?
                 </h3>
-                <p className="text-gray-700 text-lg">
+                <p className="text-muted-foreground text-lg">
                   These results aren't magic—they're methodical. The same strategies that transformed these businesses 
                   are waiting for you. The only question is: how long will you wait?
                 </p>
               </div>
               <Link to="/llmeo-audit">
-                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-12 py-4 text-lg font-semibold rounded-full">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground px-12 py-4 text-lg font-semibold rounded-full btn-hover shadow-glow">
                   Start Your Transformation
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
