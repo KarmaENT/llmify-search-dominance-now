@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      affiliates: {
+        Row: {
+          affiliate_code: string
+          commission_rate: number
+          created_at: string | null
+          id: string
+          status: string | null
+          total_earnings: number | null
+          total_referrals: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          affiliate_code: string
+          commission_rate?: number
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          total_earnings?: number | null
+          total_referrals?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          affiliate_code?: string
+          commission_rate?: number
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          total_earnings?: number | null
+          total_referrals?: number | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -38,12 +74,107 @@ export type Database = {
         }
         Relationships: []
       }
+      referrals: {
+        Row: {
+          affiliate_id: string
+          commission_amount: number | null
+          commission_paid: boolean | null
+          created_at: string | null
+          id: string
+          referred_user_id: string
+          status: string | null
+          subscription_end: string | null
+          subscription_id: string | null
+          subscription_start: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          affiliate_id: string
+          commission_amount?: number | null
+          commission_paid?: boolean | null
+          created_at?: string | null
+          id?: string
+          referred_user_id: string
+          status?: string | null
+          subscription_end?: string | null
+          subscription_id?: string | null
+          subscription_start?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          affiliate_id?: string
+          commission_amount?: number | null
+          commission_paid?: boolean | null
+          created_at?: string | null
+          id?: string
+          referred_user_id?: string
+          status?: string | null
+          subscription_end?: string | null
+          subscription_id?: string | null
+          subscription_start?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_affiliate_id_fkey"
+            columns: ["affiliate_id"]
+            isOneToOne: false
+            referencedRelation: "affiliates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          referral_bonus_applied: boolean | null
+          referred_by_code: string | null
+          stripe_customer_id: string | null
+          subscribed: boolean
+          subscription_end: string | null
+          subscription_tier: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          referral_bonus_applied?: boolean | null
+          referred_by_code?: string | null
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          referral_bonus_applied?: boolean | null
+          referred_by_code?: string | null
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_affiliate_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
