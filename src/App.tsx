@@ -9,6 +9,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import LLMEOA from "./pages/LLMEOAudit";
 import LLMEOGuide from "./pages/LLMEOGuide";
 import CaseStudies from "./pages/CaseStudies";
@@ -50,6 +51,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/llmeo-audit" element={<LLMEOA />} />
               <Route path="/llmeo-guide" element={<LLMEOGuide />} />
               <Route path="/case-studies" element={<CaseStudies />} />

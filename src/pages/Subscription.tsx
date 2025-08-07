@@ -21,12 +21,12 @@ const Subscription = () => {
   const plans = [
     {
       name: "LLMEO Starter",
-      price: "$1,997",
+      price: "$499",
       period: "/month",
       description: "Perfect for small businesses ready to dominate AI search",
       features: [
         "LLM Ranking Optimization (3 keywords)",
-        "Basic LLMEO Content Creation",
+        "Basic LLMEO Content Creation", 
         "Monthly Performance Reports",
         "ChatGPT & Claude Optimization",
         "Email Support",
@@ -36,38 +36,58 @@ const Subscription = () => {
       popular: false
     },
     {
-      name: "LLMEO Professional",
-      price: "$3,997",
+      name: "LLMEO Analyst",
+      price: "$999",
+      period: "/month", 
+      description: "Enhanced visibility tracking and basic optimization",
+      features: [
+        "LLM Ranking Optimization (5 keywords)",
+        "Standard LLMEO Content Creation",
+        "Bi-weekly Performance Reports",
+        "ChatGPT & Claude Optimization",
+        "Email Support",
+        "Standard Competitor Analysis"
+      ],
+      tier: "Analyst",
+      popular: false,
+      isDecoy: true
+    },
+    {
+      name: "LLMEO Elite", 
+      price: "$1,499",
       period: "/month",
       description: "For growing businesses serious about market leadership",
       features: [
         "LLM Ranking Optimization (10 keywords)",
         "Advanced LLMEO Content Strategy",
-        "Weekly Performance Monitoring",
+        "Weekly Performance Monitoring", 
         "All Major AI Platform Optimization",
         "Priority Phone & Email Support",
         "Advanced Competitive Intelligence",
         "Local Market Domination",
-        "AI Persona Development"
+        "AI Persona Development",
+        "Dashboard Access & Prompt Tracking"
       ],
       tier: "Premium",
       popular: true
     },
     {
-      name: "LLMEO Enterprise",
-      price: "$7,997",
+      name: "Search Lock Pro",
+      price: "$2,999", 
       period: "/month",
       description: "For enterprises demanding total AI search dominance",
       features: [
         "Unlimited LLM Optimization",
         "Complete LLMEO Content Suite",
         "Daily Performance Monitoring",
-        "Multi-Platform AI Dominance",
+        "Multi-Platform AI Dominance", 
         "Dedicated Account Manager",
         "Crisis Management & Rep Shield",
         "Industry Authority Positioning",
         "Competitor Suppression Tactics",
-        "Custom AI Strategy Development"
+        "Custom AI Strategy Development",
+        "Full Vertical Dominance Suite",
+        "CRM Integrations & Analytics"
       ],
       tier: "Enterprise",
       popular: false
@@ -219,7 +239,9 @@ const Subscription = () => {
                 <div key={index} className={`relative rounded-2xl border-2 p-8 ${
                   plan.popular 
                     ? 'border-primary bg-gradient-to-b from-primary/10 to-slate-900/50 shadow-glow scale-105' 
-                    : 'border-slate-700 bg-slate-900/50 shadow-lg hover:shadow-xl'
+                    : plan.isDecoy
+                      ? 'border-slate-600 bg-slate-900/30 opacity-75 shadow-sm'
+                      : 'border-slate-700 bg-slate-900/50 shadow-lg hover:shadow-xl'
                 } transition-all duration-300 backdrop-blur-sm`}>
                   
                   {plan.popular && (

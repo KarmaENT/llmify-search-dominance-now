@@ -59,20 +59,24 @@ serve(async (req) => {
       logStep("No existing customer found");
     }
 
-    // Define pricing based on plan
+    // Define pricing based on plan with new psychological pricing
     let unitAmount;
     let planTier;
     switch (planName) {
       case "LLMEO Starter":
-        unitAmount = 199700; // $1,997
+        unitAmount = 49900; // $499
         planTier = "Basic";
         break;
-      case "LLMEO Professional":
-        unitAmount = 399700; // $3,997
+      case "LLMEO Analyst":
+        unitAmount = 99900; // $999 (decoy tier)
+        planTier = "Analyst";
+        break;
+      case "LLMEO Elite":
+        unitAmount = 149900; // $1,499
         planTier = "Premium";
         break;
-      case "LLMEO Enterprise":
-        unitAmount = 799700; // $7,997
+      case "Search Lock Pro":
+        unitAmount = 299900; // $2,999
         planTier = "Enterprise";
         break;
       default:
@@ -99,8 +103,8 @@ serve(async (req) => {
         },
       ],
       mode: "subscription",
-      success_url: `${req.headers.get("origin")}/subscription?success=true`,
-      cancel_url: `${req.headers.get("origin")}/subscription?canceled=true`,
+      success_url: `${req.headers.get("origin")}/dashboard?success=true`,
+      cancel_url: `${req.headers.get("origin")}/subscription?cancelled=true`,
       metadata: {
         user_id: user.id,
         plan_tier: planTier,

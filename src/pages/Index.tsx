@@ -7,10 +7,12 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import PricingSection from '@/components/PricingSection';
 import UrgencySection from '@/components/UrgencySection';
 import Footer from '@/components/Footer';
+import AffiliateTracker from '@/components/AffiliateTracker';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <AffiliateTracker />
       <Header />
       <main>
         <Hero />

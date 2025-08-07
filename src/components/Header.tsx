@@ -54,6 +54,12 @@ const Header = () => {
               </a>
             ))}
             
+            {user && (
+              <Link to="/dashboard" className="text-muted-foreground hover:text-foreground font-medium transition-colors animated-underline">
+                Dashboard
+              </Link>
+            )}
+            
             {/* Resources Dropdown */}
             <div className="relative">
               <button 
