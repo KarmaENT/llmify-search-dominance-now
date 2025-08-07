@@ -248,7 +248,15 @@ const Subscription = () => {
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2">
                         <Crown className="w-4 h-4" />
-                        Most Popular
+                        Goldilocks Choice
+                      </div>
+                    </div>
+                  )}
+
+                  {plan.isDecoy && (
+                    <div className="absolute -top-4 right-4">
+                      <div className="bg-slate-600 text-slate-300 px-4 py-2 rounded-full text-sm font-medium">
+                        Limited Value
                       </div>
                     </div>
                   )}
