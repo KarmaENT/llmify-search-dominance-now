@@ -37,6 +37,7 @@ import Healthcare from "./pages/industries/Healthcare";
 import RealEstate from "./pages/industries/RealEstate";
 import Manufacturing from "./pages/industries/Manufacturing";
 import NotFound from "./pages/NotFound";
+import AffiliateTracker from "./components/AffiliateTracker";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <AffiliateTracker />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />

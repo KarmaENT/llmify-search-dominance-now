@@ -7,7 +7,7 @@ const PricingSection = () => {
   const mainTiers = [
     {
       name: "LLMEO Starter",
-      price: "$1,997",
+      price: "$499",
       period: "/month",
       description: "Perfect for small businesses ready to dominate AI search",
       features: [
@@ -22,18 +22,30 @@ const PricingSection = () => {
       highlight: false
     },
     {
-      name: "LLMEO Professional",  
-      price: "$3,997",
+      name: "LLMEO Decoy",
+      price: "$999",
+      period: "/month",
+      description: "Strategic decoy plan to frame premium value",
+      features: [
+        "Everything in Starter",
+        "More keywords, minimal extras",
+        "Standard reporting cadence"
+      ],
+      cta: "Compare Plans",
+      highlight: false
+    },
+    {
+      name: "LLMEO Professional",
+      price: "$1,499",
       period: "/month",
       description: "For growing businesses serious about market leadership",
       features: [
         "LLM Ranking Optimization (10 keywords)",
         "Advanced LLMEO Content Strategy",
-        "Weekly Performance Monitoring", 
+        "Weekly Performance Monitoring",
         "All Major AI Platform Optimization",
         "Priority Phone & Email Support",
         "Advanced Competitive Intelligence",
-        "Local Market Domination",
         "AI Persona Development (included)"
       ],
       cta: "Secure Market Leadership",
@@ -42,7 +54,7 @@ const PricingSection = () => {
     },
     {
       name: "LLMEO Enterprise",
-      price: "$7,997", 
+      price: "$2,999",
       period: "/month",
       description: "For enterprises demanding total AI search dominance",
       features: [
@@ -52,8 +64,6 @@ const PricingSection = () => {
         "Multi-Platform AI Dominance",
         "Dedicated Account Manager",
         "Crisis Management & Rep Shield",
-        "Industry Authority Positioning",
-        "Competitor Suppression Tactics",
         "Custom AI Strategy Development"
       ],
       cta: "Dominate Your Industry",
@@ -92,7 +102,7 @@ const PricingSection = () => {
           </div>
 
           {/* Main Pricing Tiers */}
-          <div className="grid lg:grid-cols-3 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {mainTiers.map((tier, index) => (
               <div key={index} className={`relative rounded-2xl border-2 p-8 card-dark transition-all duration-300 ${
                 tier.highlight 

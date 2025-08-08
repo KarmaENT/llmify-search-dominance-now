@@ -6,12 +6,17 @@ const AffiliateTracker: React.FC = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    // Check for referral code in URL
+    // Capture referral code on visit and store for later
     const urlParams = new URLSearchParams(window.location.search);
-    const refCode = urlParams.get('ref');
-    
-    if (refCode && user) {
-      trackReferral(refCode);
+    const refFromUrl = urlParams.get('ref');
+
+    if (refFromUrl) {
+      localStorage.setItem('referralCode', refFromUrl);
+    }
+
+    const storedRef = localStorage.getItem('referralCode');
+    if (storedRef && user) {
+      trackReferral(storedRef);
     }
   }, [user]);
 
@@ -27,7 +32,7 @@ const AffiliateTracker: React.FC = () => {
       // Only track if not already referred
       if (!existingSubscriber?.referred_by_code) {
         // Update subscriber with referral code
-        await supabase
+        const { error } = await supabase
           .from('subscribers')
           .upsert({
             user_id: user?.id,
@@ -36,8 +41,13 @@ const AffiliateTracker: React.FC = () => {
             subscribed: false
           }, { onConflict: 'email' });
 
-        // Store in localStorage for checkout process
-        localStorage.setItem('referralCode', refCode);
+        if (!error) {
+          // Clear stored referral since it's now associated
+          localStorage.removeItem('referralCode');
+        }
+      } else {
+        // Already referred — clear any stale stored referral
+        localStorage.removeItem('referralCode');
       }
     } catch (error) {
       console.error('Error tracking referral:', error);
