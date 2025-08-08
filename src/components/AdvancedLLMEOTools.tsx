@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Brain, 
   Zap, 
@@ -17,7 +19,8 @@ import {
   Shield,
   MessageSquare,
   Globe,
-  Rocket
+  Rocket,
+  Loader2
 } from 'lucide-react';
 
 const AdvancedLLMEOTools: React.FC = () => {
@@ -25,6 +28,10 @@ const AdvancedLLMEOTools: React.FC = () => {
   const [inputText, setInputText] = useState('');
   const [generatedContent, setGeneratedContent] = useState('');
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [runningTool, setRunningTool] = useState<string | null>(null);
+  const timerRef = useRef<number | null>(null);
+  const { toast } = useToast();
 
   const tools = [
     {
@@ -86,6 +93,60 @@ const AdvancedLLMEOTools: React.FC = () => {
     { company: "Innovation Labs", ranking: 8, change: "+3", strength: "medium" }
   ];
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, []);
+
+  const handleRun = (toolId: string) => {
+    if (loading) return;
+    setSelectedTool(toolId);
+    setGeneratedContent('');
+    setLoading(true);
+    setRunningTool(toolId);
+    setProgress(0);
+    if (timerRef.current) clearInterval(timerRef.current);
+
+    let stepIndex = 0;
+    const totalSteps = 5;
+
+    timerRef.current = window.setInterval(() => {
+      setProgress((prev) => {
+        const increment = Math.random() * 18 + 7;
+        const next = Math.min(prev + increment, 100);
+        if (next >= 100) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          setLoading(false);
+          setRunningTool(null);
+
+          // Generate mock results based on tool
+          if (toolId === 'content-optimizer') {
+            const content = [
+              'Suggested title: Optimize for AI visibility using entity-rich phrasing.',
+              ...mockOptimizations,
+              `Excerpt: ${inputText.slice(0, 120)}...`
+            ].join('\n• ');
+            setGeneratedContent(content);
+          } else if (toolId === 'prompt-builder') {
+            setGeneratedContent([
+              'Prompt 1: Act as an AI SEO strategist and rewrite the homepage hero to maximize entity recall and conversational clarity.',
+              'Prompt 2: Given the audience profile, craft a persuasive outline with semantic headers and voice-search phrasing.',
+              'Prompt 3: Generate FAQs optimized for LLM retrieval with concise, context-rich answers.'
+            ].join('\n'));
+          } else if (toolId === 'competitor-intel') {
+            setGeneratedContent('Competitor insights: AI Corp trending up; focus on mid-tail entities and schema to gain 2-3 positions.');
+          }
+
+          toast({ title: 'Analysis complete', description: tools.find(t => t.id === toolId)?.name });
+        }
+        return next;
+      });
+    }, 450);
+  };
+
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,7 +155,7 @@ const AdvancedLLMEOTools: React.FC = () => {
           return (
             <Card 
               key={tool.id} 
-              className={`card-dark cursor-pointer transition-all duration-200 hover:scale-105 ${
+              className={`card-dark cursor-pointer transition-all duration-200 hover:scale-105 hover-scale animate-fade-in ${
                 selectedTool === tool.id ? 'border-primary shadow-glow' : ''
               }`}
               onClick={() => setSelectedTool(tool.id)}
@@ -121,6 +182,32 @@ const AdvancedLLMEOTools: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
+          {(loading || (progress > 0 && progress < 100)) && (
+            <div className="space-y-2 mb-2 animate-fade-in">
+              <div className="flex items-center justify-between text-xs text-slate-300">
+                <span>Running {tools.find(t => t.id === runningTool)?.name || 'task'}...</span>
+                <span>{Math.round(progress)}%</span>
+              </div>
+              <Progress value={progress} className="h-2" />
+              <div className="flex justify-end">
+                {loading && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="mt-2"
+                    onClick={() => {
+                      if (timerRef.current) clearInterval(timerRef.current);
+                      setLoading(false);
+                      setRunningTool(null);
+                      setProgress(0);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
           <Tabs defaultValue="input" className="space-y-4">
             <TabsList className="bg-slate-800 border border-slate-700">
               <TabsTrigger value="input" className="data-[state=active]:bg-primary">Input</TabsTrigger>
@@ -150,9 +237,13 @@ const AdvancedLLMEOTools: React.FC = () => {
                       className="bg-slate-800 border-slate-700 text-white"
                     />
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
-                    <Zap className="w-4 h-4 mr-2" />
-                    {loading ? 'Optimizing...' : 'Optimize Content'}
+                  <Button className="w-full bg-primary hover:bg-primary/90" disabled={loading} onClick={() => handleRun('content-optimizer')}>
+                    {loading && runningTool === 'content-optimizer' ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <Zap className="w-4 h-4 mr-2" />
+                    )}
+                    {loading && runningTool === 'content-optimizer' ? 'Optimizing...' : 'Optimize Content'}
                   </Button>
                 </div>
               )}
@@ -166,9 +257,13 @@ const AdvancedLLMEOTools: React.FC = () => {
                       className="bg-slate-800 border-slate-700 text-white"
                     />
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90">
-                    <Search className="w-4 h-4 mr-2" />
-                    Analyze Competition
+                  <Button className="w-full bg-primary hover:bg-primary/90" disabled={loading} onClick={() => handleRun('competitor-intel')}>
+                    {loading && runningTool === 'competitor-intel' ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <Search className="w-4 h-4 mr-2" />
+                    )}
+                    {loading && runningTool === 'competitor-intel' ? 'Analyzing...' : 'Analyze Competition'}
                   </Button>
                 </div>
               )}
@@ -182,9 +277,13 @@ const AdvancedLLMEOTools: React.FC = () => {
                       className="min-h-[150px] bg-slate-800 border-slate-700 text-white"
                     />
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90">
-                    <Lightbulb className="w-4 h-4 mr-2" />
-                    Generate Prompts
+                  <Button className="w-full bg-primary hover:bg-primary/90" disabled={loading} onClick={() => handleRun('prompt-builder')}>
+                    {loading && runningTool === 'prompt-builder' ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <Lightbulb className="w-4 h-4 mr-2" />
+                    )}
+                    {loading && runningTool === 'prompt-builder' ? 'Generating...' : 'Generate Prompts'}
                   </Button>
                 </div>
               )}
@@ -267,6 +366,11 @@ const AdvancedLLMEOTools: React.FC = () => {
                     <span className="text-slate-300">2-3 days</span>
                   </div>
                 </div>
+                {generatedContent && (
+                  <div className="mt-6 p-4 rounded-lg bg-slate-900/50 border border-slate-700 animate-fade-in">
+                    <pre className="whitespace-pre-wrap text-slate-200 text-sm">{generatedContent}</pre>
+                  </div>
+                )}
                 <Button className="w-full mt-6 bg-primary hover:bg-primary/90">
                   <Rocket className="w-4 h-4 mr-2" />
                   Apply Optimizations
